@@ -16,12 +16,14 @@ foreach ($results as $row) {
 ?>
 
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>title</title>
-  </head>
-  <body>
+<html lang="en-GB">
+    <head>
+        <meta charset="UTF-8">
+        <title>Food Collection App</title>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+    </head>
+    <body>
 
-  </body>
+    </body>
 </html>
