@@ -20,6 +20,8 @@ foreach ($results as $row) {
     <head>
         <meta charset="UTF-8">
         <title>Food Collection App</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css">
     </head>
