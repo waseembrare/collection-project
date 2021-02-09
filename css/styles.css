@@ -9,8 +9,105 @@ html {
 body {
     padding: 0;
     margin: 0;
-    font-family: sans-serif;
     font-family: 'JetBrains Mono', monospace, sans-serif;
-    font-weight: 400;
+    line-height: 2;
 }
 
+::-moz-selection {
+    background: #F4B942CC;
+}
+
+::selection {
+    background: #F4B942CC;
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+
+.highlight {
+    background: linear-gradient(180deg,rgba(255,255,255,0) 60%, #F4B942CC 40%);
+}
+
+h3 {
+    font-size: 1.8rem;
+    /*background: linear-gradient(180deg,rgba(255,255,255,0) 60%, #F4B942 40%);*/
+}
+
+img {
+    min-width: 0;
+    max-width:360px;
+}
+
+.header {
+    margin: auto;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.footer {
+    display: inline-block;
+    margin-bottom: 60px;
+    padding-top: 20px;
+    text-align: center;
+    height: 100px;
+    font-size: 4rem;
+}
+
+.site-intro {
+    margin: auto auto 60px auto;
+    text-align: center;
+    padding: 10px;
+    border: black solid 2px;
+    border-radius: 20px;
+    max-width: 400px;
+}
+
+.items-outer-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px;
+    justify-content: space-evenly;
+}
+
+.collection-item-container {
+    margin: 30px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: black solid 2px;
+    border-radius: 20px;
+    max-width: 400px;
+    justify-content: space-between;
+    font-size: 1.4rem;
+}
+
+.icon {
+    margin: 5px 20px 5px 20px;
+    width: 4.5rem;
+}
+
+.action-icon {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    max-width: 80px;
+}
+
+.icon-animation {
+    transition: all .4s ease-in-out;
+}
+
+.icon-animation:hover {
+    transform: scale(1.2);
+}
