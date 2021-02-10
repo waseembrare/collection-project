@@ -3,34 +3,14 @@
 $db = new PDO('mysql:host=db; dbname=food-collection', 'root', 'password');
 $query = $db->prepare("SELECT * FROM `food`;");
 $query->setFetchMode(PDO::FETCH_ASSOC);
+//$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+//$query = $db->prepare("SELECT * FROM `food`;");
 $query->execute();
+$results = $query->fetchAll();
 
-//var_dump($results);
-//'<ul>';
-//foreach ($results as $row) {
-//    echo '<br>';
-//    echo '<li>' . $row["id"] . ": " . $row["dish_name"]. ", " . $row["image_url"]. ", ". $row["alt_tag"]. ", ". $row["food_creator"]. ", ". $row["ease_factor"]. ", ". $row["speed_factor"]. ", ". $row["taste_factor"]. ", ". $row["health_factor"]. ", ". $row["notes"]. '</li>';
-//    '</ul>';
-//}
+sortArrayToIndividualItems($results);
 
-//?>
-<!---->
-<?// while ($row = $query->fetch()) { ?>
-<!--    <div class="collection_item ">-->
-<!--        <div class="stats">-->
-<!--                    <span class="image_wrapper">-->
-<!--                        <img src="--><?//=$row['image']?><!--">-->
-<!--                    </span>-->
-<!--            <h3>--><?//=$row['name']?><!--</h3>-->
-<!--            <ul>-->
-<!--                <li class="origin">Origin: --><?//=$row['origin']?><!--</li>-->
-<!--                <li class="family">Family: --><?//=$row['family']?><!--</li>-->
-<!--                <li class="preservation_type">--><?//=$row['method']?><!--</li>-->
-<!--                <li class="quality">Rating: --><?//=$row['rating']?><!--/10</li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<?// } ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en-GB">
@@ -53,41 +33,17 @@ $query->execute();
     <div class="site-intro">
         <h2>add your own plates using the &#x2795 icon or just check out other plates for some tasty inspiration.</h2>
     </div>
-    <div class="items-outer-container">
+    <?
+    $arr_length = count($results);
 
-    <? while ($row = $query->fetch()) { ?>
-        <div class="collection-item-container">
-            <div class="item-title">
-                <h3><span class="highlight"><?=$row['dish_name']?></span></h3>
-            </div>
-            <div class="item-image">
-                <img src="<?=$row['image_url']?>">
-            </div>
-            <div class="item-stats">
-                <ul>
-                    <li>ease factor: <?=$row['ease_factor']?></li>
-                    <li>speed factor: <?=$row['speed_factor']?></li>
-                    <li>taste factor: <?=$row['taste_factor']?></li>
-                    <li>health factor: <?=$row['health_factor']?></li>
-                </ul>
-            </div>
-            <div class="item-notes">
-                <p><span class="highlight">notes from <?=$row['food_creator']?>:</span></p>
-                <p><?=$row['notes']?></p>
-            </div>
-            <div class="item-icons">
-                <div class="icon-container">
-                    <img class="icon icon-animation" src="assets/delete-icon-v2.png">
-                    <img class="icon icon-animation" src="assets/edit-icon-v2.png">
-                </div>
-            </div>
-        </div>
-    <? } ?>
-
-    </div>
+    echo $arr_length;
+    for($i=0;$i<$arr_length;$i++) {
+        echo displayItemCards($results);
+    }
+    ?>
 
     <div class="add-item-button">
-        <img class="action-icon icon-animation" src="assets/plus-icon-v2.png">
+        <img alt="add-button" class="action-icon icon-animation" src="assets/plus-icon-v2.png">
     </div>
     <footer>
         <h2><span class="highlight">keep cooking bruv...</span> &#129382</h2>
@@ -97,6 +53,83 @@ $query->execute();
 
 <?php
 
-function deleteItem() {
+
+
+
+
+function displayItemCards(array $results) {
+
+    $allCardsHtml = '<div class="items-outer-container">';
+
+    foreach ($results as $row) {
+        $allCardsHtml .= '<div class="collection-item-container">';
+        $allCardsHtml .= '<div class="item-title">';
+        $allCardsHtml .= '<h3><span class="highlight"' . $row['dish_name'] . '</span></h3>';
+        $allCardsHtml .= '</div>';
+        $allCardsHtml .= '<div class="item-image">';
+        $allCardsHtml .= '<img src="' . $row['image_url'] . '"' . 'alt="' . $row['alt_tag'] . '">';
+        $allCardsHtml .= '</div>';
+        $allCardsHtml .= '<div class="item-stats">';
+        $allCardsHtml .= '<ul>';
+        $allCardsHtml .= '<li>ease factor // ' . $row['ease_factor'] . '</li>';
+        $allCardsHtml .= '<li>speed factor // ' . $row['speed_factor'] . '</li>';
+        $allCardsHtml .= '<li>taste factor // ' . $row['taste_factor'] . '</li>';
+        $allCardsHtml .= '<li>health factor // ' . $row['health_factor'] . '</li>';
+        $allCardsHtml .= '</ul>';
+        $allCardsHtml .= '</div>';
+        $allCardsHtml .= '<div class="item-notes">';
+        $allCardsHtml .= '<p><span class="highlight">' . 'notes from</span>' . $row['food_creator'] . ':</p>';
+        $allCardsHtml .= '<p>' . $row['notes'] . '</p>';
+        $allCardsHtml .= '</div>';
+        $allCardsHtml .= '<div class="item-icons">';
+        $allCardsHtml .= '<div class="icon-container">';
+        $allCardsHtml .= '<div>';
+        $allCardsHtml .= '<form method="post">';
+        $allCardsHtml .= '<button name="delete" value="delete">' . '<img alt="delete-button" class="icon icon-animation' . $row['id'] . '" src="assets/delete-icon-v2.png"></button>';
+        $allCardsHtml .= '</form>';
+        $allCardsHtml .= '<form method="post">';
+        $allCardsHtml .= '<button name="delete" value="delete"><img alt="edit-button" class="icon icon-animation" src="assets/edit-icon-v2.png"></button>';
+        $allCardsHtml .= '</form>';
+        $allCardsHtml .= '</div>';
+        $allCardsHtml .= '</div>';
+        $allCardsHtml .= '</div>';
+        $allCardsHtml .= '</div>';
+    }
+
+    $allCardsHtml .= '</div>';
+    return $allCardsHtml;
 
 }
+
+
+function sortArrayToIndividualItems (array $results) {
+    foreach ($results as $row) {
+        $row =  ['id' => $row["id"],
+            'dish_name' => $row['dish_name'],
+            'image_url' => $row['image_url'],
+            'alt_tag' => $row['alt_tag'],
+            'food_creator' => $row['food_creator'],
+            'ease_factor' => $row['ease_factor'],
+            'speed_factor' => $row['speed_factor'],
+            'taste_factor' => $row['taste_factor'],
+            'health_factor' => $row['health_factor'],
+            'notes' => $row['notes'],
+            'deleted' => $row['deleted']];
+        return $row;
+    }
+}
+
+
+//                    if(isset($_POST['delete'])) {
+//                    $_POST['delete'] = 1;
+//                    $deleteQuery = $db->prepare("INSERT INTO `food` (`deleted`) VALUES (:delete)");
+//                    $deleteQuery->bindParam(':delete', $_POST['delete'], PDO::PARAM_INT );
+//                    $deleteQuery->execute();
+//                    }
+
+
+//function deleteItem() {
+//    if (!empty($_POST["delete"])) {
+//        "INSERT INTO `deleted` VALUES `1`;";
+//    }
+//}
