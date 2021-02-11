@@ -5,6 +5,7 @@ require_once 'functions.php';
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -29,10 +30,6 @@ require_once 'functions.php';
     <?
         echo displayItemCards($results);
     ?>
-
-    <div class="add-item-button">
-        <img alt="add-button" class="action-icon icon-animation" src="assets/plus-icon-v2.png">
-    </div>
     <footer>
         <h2><span class="highlight">keep cooking bruv...</span> &#129382</h2>
     </footer>
