@@ -12,7 +12,7 @@ require_once 'functions.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>cheffin' it up bruv</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fo2nts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
