@@ -31,4 +31,3 @@ function displayItemCards(array $results) {
     $allCardsHtml .= '</div>';
     return $allCardsHtml;
 }
-

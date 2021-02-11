@@ -5,7 +5,6 @@ require_once 'functions.php';
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
