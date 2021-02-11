@@ -1,13 +1,5 @@
 <?php
 
-$db = new PDO('mysql:host=db; dbname=food-collection', 'root', 'password');
-$query = $db->prepare("SELECT * FROM `food`;");
-$query->setFetchMode(PDO::FETCH_ASSOC);
-//$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-//$query = $db->prepare("SELECT * FROM `food`;");
-$query->setFetchMode(PDO::FETCH_ASSOC);
-$query->execute();
-$results = $query->fetchAll();
 sortArrayToIndividualItems($results);
 
 function sortArrayToIndividualItems (array $results) {
@@ -27,9 +19,36 @@ function sortArrayToIndividualItems (array $results) {
     }
 }
 
-array("id"=>"1", "dish_name"=>"Cinnamon buns", "image_url"=>"assets/cinnamon-buns.jpg", "alt_tag"=>"cinnamon buns", "food_creator"=>"Waseem", "ease_factor"=>"5", "speed_factor"=>"4", "taste_factor"=>"9", "health_factor"=>"4", "notes"=>"Perfect with a coffee, any time of day! Amp it up with apple and pecan.", "deleted"=>"NULL");
-array("id"=>"2", "dish_name"=>"Cinnamon buns", "image_url"=>"assets/cinnamon-buns.jpg", "alt_tag"=>"cinnamon buns", "food_creator"=>"Waseem", "ease_factor"=>"5", "speed_factor"=>"4", "taste_factor"=>"9", "health_factor"=>"4", "notes"=>"Perfect with a coffee, any time of day! Amp it up with apple and pecan.", "deleted"=>"NULL");
 
+function displayItemCards(array $results) {
 
+    $allCardsHtml = '<div class="items-outer-container">';
 
+    foreach ($results as $row) {
+        $allCardsHtml .= '<div class="collection-item-container">';
+        $allCardsHtml .= '<div class="item-title">';
+        $allCardsHtml .= '<h3><span class="highlight">' . $row['dish_name'] . '</span></h3>';
+        $allCardsHtml .= '</div>';
+        $allCardsHtml .= '<div class="item-image">';
+        $allCardsHtml .= '<img src="' . $row['image_url'] . '"' . 'alt="' . $row['alt_tag'] . '">';
+        $allCardsHtml .= '</div>';
+        $allCardsHtml .= '<div class="item-stats">';
+        $allCardsHtml .= '<ul>';
+        $allCardsHtml .= '<li>ease factor // ' . $row['ease_factor'] . '</li>';
+        $allCardsHtml .= '<li>speed factor // ' . $row['speed_factor'] . '</li>';
+        $allCardsHtml .= '<li>taste factor // ' . $row['taste_factor'] . '</li>';
+        $allCardsHtml .= '<li>health factor // ' . $row['health_factor'] . '</li>';
+        $allCardsHtml .= '</ul>';
+        $allCardsHtml .= '</div>';
+        $allCardsHtml .= '<div class="item-notes">';
+        $allCardsHtml .= '<p><span class="highlight">' . 'notes from</span> ' . $row['food_creator'] . ':</p>';
+        $allCardsHtml .= '<p>' . $row['notes'] . '</p>';
+        $allCardsHtml .= '</div>';
+        $allCardsHtml .= '</div>';
+    }
+
+    $allCardsHtml .= '</div>';
+    return $allCardsHtml;
+
+}
 
