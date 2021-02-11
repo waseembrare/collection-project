@@ -1,9 +1,5 @@
 <?php
 
-//sortArrayToIndividualItems($results);
-
-
-
 
 function displayItemCards(array $results) {
 
