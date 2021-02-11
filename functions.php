@@ -1,23 +1,8 @@
 <?php
 
-sortArrayToIndividualItems($results);
+//sortArrayToIndividualItems($results);
 
-function sortArrayToIndividualItems (array $results) {
-    foreach ($results as $row) {
-        $row =  ['id' => $row['id'],
-            'dish_name' => $row['dish_name'],
-            'image_url' => $row['image_url'],
-            'alt_tag' => $row['alt_tag'],
-            'food_creator' => $row['food_creator'],
-            'ease_factor' => $row['ease_factor'],
-            'speed_factor' => $row['speed_factor'],
-            'taste_factor' => $row['taste_factor'],
-            'health_factor' => $row['health_factor'],
-            'notes' => $row['notes'],
-            'deleted' => $row['deleted']];
-        return $row;
-    }
-}
+
 
 
 function displayItemCards(array $results) {
